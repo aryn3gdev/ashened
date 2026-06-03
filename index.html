@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashened SMP</title>
+
+  <style>
+    /* Reset and Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d0d0d;
+      color: #f5f5f5;
+      min-height: 200vh; /* Extra height to allow scrolling */
+      
+      /* Updated Background Image for Index */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('top11.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    /* Fixed Modern Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(17, 17, 17, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      z-index: 1000;
+    }
+
+    .topbarlogo {
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .topbuttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    /* Sleek Navigation Buttons */
+    .topbutton {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.75);
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .topbutton:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Content Layout */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 150px 20px 100px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 100px; /* Generous spacing to demonstrate scroll effect */
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 60px 0;
+    }
+
+    .hero-section h1 {
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    /* Scroll Animation Styles */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      background: rgba(20, 20, 20, 0.6);
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(6px);
+    }
+
+    /* The class JavaScript applies when the element enters the viewport */
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-section h2 {
+      margin-bottom: 15px;
+      color: #ff5722; /* Optional Accent color for Ashened theme */
+    }
+
+    .fade-in-section p {
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .link {
+      border: none;
+      background: none;
+      color: #ff5722;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: inherit;
+      padding: 0;
+    }
+    
+    .link:hover {
+      color: #ff784e;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <img src="ashenlogo.png" class="topbarlogo" alt="Ashened Logo">
+    <div class="topbuttons">
+      <a href="index.html"><button class="topbutton">Home</button></a>
+      <a href="rules.html"><button class="topbutton">Rules</button></a>
+      <a href="https://discord.gg/R8bSD8c5CY" target="_blank"><button class="topbutton">Discord</button></a>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <div class="hero-section">
+      <h1>ASHENED SMP</h1>
+      <p>Scroll down to explore the realm.</p>
+    </div>
+
+    <div class="fade-in-section">
+      <h2>Welcome to the Ashes</h2>
+      <p>Where your adventure begins. Join a community built on creativity, survival, and competition.</p>
+    </div>
+
+    <div class="fade-in-section">
+      <h2>Server Rules</h2>
+      <p>Keep the community safe and fair. Respect your fellow players, avoid griefing unconsensual areas, and enjoy the survival experience to its absolute fullest or join in scripted.</p>
+    </div>
+
+    <div class="fade-in-section">
+      <h2>Join the Community</h2>
+      <p>Our Discord is the hub for all announcements and scripted events. Grab your roles and get whitelisted today. <a href="https://discord.gg/R8bSD8c5CY" target="_blank" class="link">Discord.</a></p>
+    </div>
+
+  </div>
+
+  <script>
+    const observerOptions = {
+      root: null,
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    const fadeSections = document.querySelectorAll('.fade-in-section');
+    fadeSections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+
+</body>
+</html>
